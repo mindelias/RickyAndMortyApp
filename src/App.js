@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch, // for server rendering
+  Route
+} from "react-router-dom";
+// import SideBar from "./Components/SideBar";
+import "./App.css";
+import Character from "./Components/Character";
+import ShowMore from "./Components/ShowMore";
+import Location from "./Components/Location";
+import Episodes from "./Components/Episodes";
+import SideBar from './Components/SideBar'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Router>
+        <SideBar /> 
+        <Switch>
+          <Route exact path="/">
+            <Character />
+          </Route>
+          {/* <Route path="/character/:id">
+            <ShowMore />
+          </Route> */}
+          <Route path="/location">
+            <Location />
+          </Route>
+          <Route path="/episodes" component={Episodes} />
+        </Switch>
+      </Router>
+    </React.Fragment>
   );
 }
 
